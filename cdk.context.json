@@ -1,0 +1,5 @@
+{
+  "default_repo_branch_name": "main",
+  "dev_account_id": "DevAccountId",
+  "deployment_region": "us-west-2"
+}
