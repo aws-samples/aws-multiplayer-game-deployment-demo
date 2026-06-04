@@ -1,5 +1,4 @@
 
- import { Stage, StageProps } from 'aws-cdk-lib/aws-apigateway/lib/stage';
 import { GameDemoFargateDockerStack } from './game-demo-fargate-docker-stack';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
