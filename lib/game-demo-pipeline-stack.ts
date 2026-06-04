@@ -30,9 +30,10 @@ export class GameDemoPipelineStack extends cdk.Stack {
       })
     });
 
-    // Gets the account id and deployment region from the configuration file.
-    const devAccountId = this.node.tryGetContext('dev_account_id');
-    const deploymentRegion = this.node.tryGetContext('deployment_region');
+    // Gets the account id and deployment region from the configuration file,
+    // falling back to the active CLI/profile account & region for local deploys.
+    const devAccountId = this.node.tryGetContext('dev_account_id') || process.env.CDK_DEFAULT_ACCOUNT;
+    const deploymentRegion = this.node.tryGetContext('deployment_region') || process.env.CDK_DEFAULT_REGION;
   
     const demoStage = pipeline.addStage(new GameDemoFargatePipelineStage(this, "GameDemoPipelineStage", {
       env: { account: devAccountId, region: deploymentRegion }
