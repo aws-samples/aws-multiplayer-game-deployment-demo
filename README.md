@@ -37,7 +37,7 @@ Update a few values in the sample code before deploying.
 
 Open the cdk.context.json file and update the 3 values based on your environment:
 -	default_repo_branch_name – The name of your AWS CodeCommit repository branch
--	dev_account_id – The AWS account ID where you want to deploy the game server
+-	dev_account_id – The AWS account ID where you want to deploy the game server. Optional: if omitted, deploys fall back to the account of the active AWS CLI profile/credentials (useful for local single-account deploys). Set it explicitly for cross-account pipeline deployments.
 -	deployment_region – The AWS region where you want to deploy the game server
     - If you change the region from us-west-2 you will also need to update the region in the bin/game-demo-pipeline.ts file and change the region in command line parameters in later steps
 
