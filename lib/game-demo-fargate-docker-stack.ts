@@ -3,6 +3,7 @@ import ec2 = require('aws-cdk-lib/aws-ec2');
 import ecs = require('aws-cdk-lib/aws-ecs');
 import logs = require('aws-cdk-lib/aws-logs');
 import ecs_patterns = require('aws-cdk-lib/aws-ecs-patterns');
+import ecr_assets = require('aws-cdk-lib/aws-ecr-assets');
 import cdk = require('aws-cdk-lib');
 import path = require('path');
 
@@ -29,7 +30,9 @@ export class GameDemoFargateDockerStack extends cdk.Stack {
       // Create the container image and store it in Elastic Container Registry (ECR). 
       // CDK will manage the creation and upload of the container image,
       // just add the folder path name to the .Docker file to be used as the container image.
-      image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, 'minecraft-image')),
+      image: ecs.ContainerImage.fromAsset(path.resolve(__dirname, 'minecraft-image'), {
+        platform: ecr_assets.Platform.LINUX_AMD64,
+      }),
       environment: {
         EULA: 'TRUE',
         VERSION: 'LATEST',
